@@ -1,0 +1,9 @@
+BootUI JetBrains companion
+Standalone extraction maintained by Sandra Ahlgrimm.
+
+Portions of the plugin source were extracted from the BootUI project:
+https://github.com/jdubois/boot-ui
+Source commit: 13202560ce509ee395b96089de56c49efe707280
+Original integration proposal: https://github.com/jdubois/boot-ui/pull/1414
+
+The extracted source is distributed under the Apache License, Version 2.0. See LICENSE for the license text.
