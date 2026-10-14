@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: gradle/actions/wrapper-validation@0723195856401067f7a2779048b490ace7a47d7c
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c
+      - name: Test, build, and verify plugin
+        run: ./gradlew --no-daemon test buildPlugin verifyPluginStructure verifyPlugin
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: bootui-jetbrains-plugin
+          path: build/distributions/*.zip
+          if-no-files-found: error
+          retention-days: 7
